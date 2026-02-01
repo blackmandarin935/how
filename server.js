@@ -13,7 +13,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Security middleware
+// Security middleware - connectSrc에 localhost 포함 (file://에서 접속 시)
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
@@ -21,9 +21,23 @@ app.use(helmet({
       scriptSrc: ["'self'"],
       styleSrc: ["'self'", "'unsafe-inline'"],
       imgSrc: ["'self'", "data:", "blob:"],
-      connectSrc: ["'self'"]
+      connectSrc: ["'self'", "http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:*", "http://127.0.0.1:*"]
     }
   }
+}));
+
+// CORS - Cloudflare Pages 및 로컬 개발 허용
+const allowedOrigins = [
+  'https://how-als.pages.dev',
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
+];
+app.use(cors({
+  origin: (origin, cb) => {
+    if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
+    cb(null, true);
+  },
+  methods: ['GET', 'POST', 'OPTIONS'],
 }));
 
 // Rate limiting
@@ -36,8 +50,11 @@ const limiter = rateLimit({
 });
 
 app.use('/api/', limiter);
-app.use(cors());
 app.use(express.json({ limit: '20mb' }));
+
+// OPTIONS preflight 명시적 처리
+app.options('/api/analyze', (req, res) => res.sendStatus(204));
+
 app.use(express.static('.'));
 
 let ai = null;

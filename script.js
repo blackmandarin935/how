@@ -124,9 +124,9 @@ class ObjectAnalyzer {
     }
 
     getApiBase() {
-        if (window.location.protocol === 'file:') {
-            return 'http://localhost:3000';
-        }
+        if (window.API_BASE_URL) return window.API_BASE_URL.replace(/\/$/, '');
+        if (window.location.protocol === 'file:') return 'http://localhost:3000';
+        if (window.location.hostname === 'localhost') return 'http://localhost:3000';
         return '';
     }
 

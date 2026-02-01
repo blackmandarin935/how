@@ -1,6 +1,9 @@
 {
   "name": "object-analyzer",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=18"
+  },
   "description": "물건 쓰임새 분석기 - Google Gemini API",
   "type": "module",
   "scripts": {
