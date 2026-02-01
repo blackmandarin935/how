@@ -1,0 +1,3 @@
+# 로컬 개발 시 wrangler pages dev 사용 시
+# 이 파일을 .dev.vars로 복사하고 실제 키 입력
+GEMINI_API_KEY=your_api_key_here

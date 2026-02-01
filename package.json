@@ -1,24 +1,21 @@
 {
   "name": "object-analyzer",
   "version": "1.0.0",
-  "engines": {
-    "node": ">=18"
-  },
-  "description": "물건 쓰임새 분석기 - Google Gemini API",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "pages:dev": "npm run build && wrangler pages dev dist",
+    "pages:deploy": "npm run build && wrangler pages deploy dist"
   },
   "dependencies": {
-    "@google/genai": "^1.0.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "express-rate-limit": "^7.5.1",
-    "helmet": "^7.2.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/node": "^20.10.0"
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.0.0",
+    "wrangler": "^3.78.0"
   }
 }
