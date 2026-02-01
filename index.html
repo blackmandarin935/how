@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>물건 쓰임새 분석기</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📸 물건 쓰임새 분석기</h1>
+            <p>사진을 찍으면 물건의 쓰임새를 알려드립니다</p>
+        </header>
+
+        <main>
+            <div class="info-section">
+                <div class="info-container">
+                    <div class="info-icon">🚀</div>
+                    <h3>Google Gemini AI 이미지 분석</h3>
+                    <p>Gemini 3 Flash 모델과 Google Search로 물건의 쓰임새를 정확하게 분석합니다. 서버 실행 필요 (npm start)</p>
+                </div>
+            </div>
+
+            <div class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <div class="upload-icon">📷</div>
+                        <p class="upload-text">사진을 여기에 드래그하거나 클릭하여 선택하세요</p>
+                        <input type="file" id="fileInput" accept="image/*" capture="camera">
+                        <button class="upload-btn" id="uploadBtn">파일 선택</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-section" id="previewSection" style="display: none;">
+                <div class="image-container">
+                    <img id="previewImage" alt="업로드된 이미지">
+                    <button class="remove-btn" id="removeBtn">✕</button>
+                </div>
+                <button class="analyze-btn" id="analyzeBtn">🔍 쓰임새 분석하기</button>
+            </div>
+
+            <div class="loading-section" id="loadingSection" style="display: none;">
+                <div class="spinner"></div>
+                <p>이미지를 분석 중입니다...</p>
+            </div>
+
+            <div class="result-section" id="resultSection" style="display: none;">
+                <h2>📋 분석 결과</h2>
+                <div class="result-content" id="resultContent">
+                </div>
+                <button class="new-analysis-btn" id="newAnalysisBtn">📷 새로운 사진 분석하기</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
